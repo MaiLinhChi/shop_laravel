@@ -10,7 +10,7 @@
     <!-- Content Header (Page header) -->
     <div class="content-wrapper container p-3">
       @include('components.content_header', ['content' => 'Menu create'])
-      <form method="POST" action="{{ route("admin.category.store") }}">
+      <form method="POST" action="{{ route("admin.menu.store") }}">
         @csrf
         <div class="mb-3">
           <label for="name" class="form-label">Name</label>
@@ -20,7 +20,7 @@
           <label for="parent_id" class="form-label">Choose parent</label>
           <select class="custom-select" id="parent_id" name="parent_id">
             <option value="0">Danh mục cha</option>
-            {{-- {!! $category !!} --}}
+            {!! $menu !!}
           </select>
         </div>
         <div class="text-center">

@@ -41,6 +41,38 @@
             </p>
           </a>
         </li>
+        <li class="nav-item">
+          <a href="{{ route('admin.menu') }}" class="nav-link">
+            <i class="nav-icon fas fa-th"></i>
+            <p>
+              Menu
+            </p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="{{ route('admin.product') }}" class="nav-link">
+            <i class="nav-icon fas fa-th"></i>
+            <p>
+              Product
+            </p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="{{ route('admin.slider') }}" class="nav-link">
+            <i class="nav-icon fas fa-th"></i>
+            <p>
+              Slider
+            </p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="{{ route('admin.setting') }}" class="nav-link">
+            <i class="nav-icon fas fa-th"></i>
+            <p>
+              Setting
+            </p>
+          </a>
+        </li>
       </ul>
     </nav>
     <!-- /.sidebar-menu -->

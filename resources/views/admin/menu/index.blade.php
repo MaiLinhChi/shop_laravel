@@ -3,7 +3,10 @@
 @section('title')
   <title>Menu list</title>
 @endsection
-
+@section('js')
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="/admins/sweatalert.js"></script>
+@endsection
 @section('content')
       <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper container-fluid">
@@ -14,7 +17,7 @@
           @include('components.content_header', ['content' => 'Menu list', 'align' => 'left'])
         </div>
         <div class="col-6 text-right">
-          <a class="btn btn-outline-success btn-lg" href="{{ route('admin.menu.create') }}">Create categories</a>
+          <a class="btn btn-outline-success btn-lg" href="{{ route('admin.menu.create') }}">Create menu</a>
         </div>
       </div>
       <!-- Main content -->
@@ -33,32 +36,35 @@
                     </tr>
                   </thead>
                   <tbody>
-                    {{-- @foreach ($category as $key=>$categories)
-                      <tr>
-                        <th scope="row">{{ $categories['id'] }}</th>
-                        <td>{{ $categories['name'] }}</td>
-                        <td>{{ $categories['parent_id'] }}</td>
-                        <td>{{ $categories['slug'] }}</td>
-                        <td class="text-center">
-                          <a class="btn btn-warning" href="{{ route('admin.category.edit', ['id' => $categories->id]) }}">
-                            Edit
-                          </a>
-                        </td>
-                        <td class="text-center">
-                          <a
-                            class="btn btn-danger"
-                            href="{{ route('admin.category.delete', ['id' => $categories->id]) }}">
-                            Delete
-                          </a>
-                        </td>
-                      </tr>
-                    @endforeach --}}
+                    @if (!$menu->isEmpty())
+                      @foreach ($menu as $item)
+                        <tr>
+                          <th scope="row">{{ $item['id'] }}</th>
+                          <td>{{ $item['name'] }}</td>
+                          <td>{{ $item['parent_id'] }}</td>
+                          <td>{{ $item['slug'] }}</td>
+                          <td class="text-center">
+                            <a class="btn btn-warning" href="{{ route('admin.menu.edit', ['id' => $item->id]) }}">
+                              Edit
+                            </a>
+                          </td>
+                          <td class="text-center">
+                            <a
+                              class="btn btn-danger action_delete"
+                              data-url="{{ route('admin.menu.delete', ['id' => $item->id]) }}"
+                              href="{{ route('admin.menu.delete', ['id' => $item->id]) }}">
+                              Delete
+                            </a>
+                          </td>
+                        </tr>
+                      @endforeach
+                    @endif
                   </tbody>
                 </table>
               </div>
-              {{-- <div class="pagination d-flex justify-content-center">
-                {{ $category->links() }}
-              </div> --}}
+              <div class="pagination d-flex justify-content-center">
+                {{ $menu->links() }}
+              </div>
             </div>
             <!-- /.col-md-6 -->
           <!-- /.row -->

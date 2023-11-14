@@ -5,16 +5,20 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Services\Recursive;
+use App\Traits\DeleteModelTrait;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
 class CategoryController extends Controller
 {
+    use DeleteModelTrait;
     private $categoryHtml;
     private $category;
+    private $recursive;
 
     public function __construct(Category $category) {
         $this->category = $category;
+        $this->recursive = new Recursive($this->category);
     }
 
     public function index () {
@@ -23,7 +27,7 @@ class CategoryController extends Controller
     }
 
     public function create () {
-        $this->getCategory(0);
+        $this->categoryHtml = $this->recursive->getCategory(0);
         return view('admin.category.create', ['category' => $this->categoryHtml]);
     }
 
@@ -43,7 +47,7 @@ class CategoryController extends Controller
 
     public function edit ($id) {
         $data = $this->category::find($id);
-        $this->getCategory($data);
+        $this->categoryHtml = $this->recursive->getCategory($data);
         return view('admin.category.edit', ['category' => $this->categoryHtml, 'categories' => $data]);
     }
 
@@ -62,26 +66,6 @@ class CategoryController extends Controller
     }
 
     public function delete ($id) {
-        try {
-            $this->category::find($id)->delete();
-            return redirect('/admin/category')->with('success', 'Bản ghi đã được xóa thành công.');
-        } catch (\Throwable $th) {
-            return redirect('/admin/category/create')->with('success', 'Lỗi: Bản ghi không thể xóa.');
-        }
-    }
-
-    public function getCategory ($categories) {
-        if (is_object($categories)) {
-            $data = $this->category::where('id', '!=', $categories['id'])->get();
-            $recursive = new Recursive($data);
-            $this->categoryHtml = $recursive->printCategories($categories['parent_id'], 0, '');
-        } else {
-            $data = $this->category::all();
-            $recursive = new Recursive($data);
-            $this->categoryHtml = $recursive->printCategories(null, 0, '');
-        }
-
-
-        return $this->categoryHtml;
+        return $this->deleteModelTrait($this->category, $id);
     }
 }

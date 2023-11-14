@@ -25,4 +25,16 @@ class Recursive
 
         return $this->categoryHtml;
     }
+
+    public function getCategory ($categories) {
+        $this->data = $this->data::all();
+        if (is_object($categories)) {
+            $this->categoryHtml = $this->printCategories($categories['parent_id'] ? $categories['parent_id'] : $categories['category_id'], 0, '');
+        } else {
+            $this->categoryHtml = $this->printCategories(null, 0, '');
+        }
+
+
+        return $this->categoryHtml;
+    }
 }

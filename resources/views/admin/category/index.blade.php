@@ -3,7 +3,10 @@
 @section('title')
   <title>Category list</title>
 @endsection
-
+@section('js')
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="/admins/sweatalert.js"></script>
+@endsection
 @section('content')
       <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper container-fluid">
@@ -46,7 +49,8 @@
                         </td>
                         <td class="text-center">
                           <a
-                            class="btn btn-danger"
+                            class="btn btn-danger action_delete"
+                            data-url="{{ route('admin.category.delete', ['id' => $categories->id]) }}"
                             href="{{ route('admin.category.delete', ['id' => $categories->id]) }}">
                             Delete
                           </a>
