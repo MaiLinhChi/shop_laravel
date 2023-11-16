@@ -43,9 +43,11 @@
                         <td>{{ $categories['parent_id'] }}</td>
                         <td>{{ $categories['slug'] }}</td>
                         <td class="text-center">
-                          <a class="btn btn-warning" href="{{ route('admin.category.edit', ['id' => $categories->id]) }}">
-                            Edit
-                          </a>
+                          @can('category-edit')
+                            <a class="btn btn-warning" href="{{ route('admin.category.edit', ['id' => $categories->id]) }}">
+                              Edit
+                            </a>
+                          @endcan
                         </td>
                         <td class="text-center">
                           <a

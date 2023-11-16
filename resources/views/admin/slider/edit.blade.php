@@ -9,7 +9,7 @@
 @endsection
 @section('js')
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-  <script src="/admins/product/index.js"></script>
+  <script src="/admins/sweatalert.js"></script>
 @endsection
 @section('content')
       <!-- Content Wrapper. Contains page content -->

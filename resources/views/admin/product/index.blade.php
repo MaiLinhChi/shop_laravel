@@ -6,7 +6,7 @@
 
 @section('js')
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-  <script src="/admins/product/index.js"></script>
+  <script src="/admins/sweatalert.js"></script>
 @endsection
 
 @section('content')
@@ -53,9 +53,10 @@
                         <td>{{ $productItem['user_id'] }}</td>
                         <td>{{ $productItem['tag'] }}</td>
                         <td class="text-center">
-                          <a class="btn btn-warning" href="{{ route('admin.product.edit', ['id' => $productItem->id]) }}">
-                            Edit
-                          </a>
+                            <a class="btn btn-warning" href="{{ route('admin.product.edit', ['id' => $productItem->id]) }}">
+                              Edit
+                            </a>
+
                         </td>
                         <td class="text-center">
                           <a

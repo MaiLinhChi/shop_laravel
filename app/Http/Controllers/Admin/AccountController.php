@@ -11,7 +11,7 @@ class AccountController extends Controller
 {
     public function index() {
         if (Auth::check()) {
-            return redirect('/admin/category');
+            return redirect('/client/home');
         }
         return view("login");
     }

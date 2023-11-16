@@ -73,6 +73,30 @@
             </p>
           </a>
         </li>
+        <li class="nav-item">
+          <a href="{{ route('admin.user') }}" class="nav-link">
+            <i class="nav-icon fas fa-th"></i>
+            <p>
+              Users
+            </p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="{{ route('admin.role') }}" class="nav-link">
+            <i class="nav-icon fas fa-th"></i>
+            <p>
+              Roles
+            </p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="{{ route('admin.permission.create') }}" class="nav-link">
+            <i class="nav-icon fas fa-th"></i>
+            <p>
+              Permission
+            </p>
+          </a>
+        </li>
       </ul>
     </nav>
     <!-- /.sidebar-menu -->

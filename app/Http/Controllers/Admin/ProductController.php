@@ -71,11 +71,13 @@ class ProductController extends Controller
                     ]);
                 }
             }
-            foreach ($request->tags as $tagImage) {
-                $tagInstace = $this->tag::firstOrCreate(['name' => $tagImage]);
-                $tagList[] = $tagInstace->id;
+            if (!empty($request->tags)) {
+                foreach ($request->tags as $tagImage) {
+                    $tagInstace = $this->tag::firstOrCreate(['name' => $tagImage]);
+                    $tagList[] = $tagInstace->id;
+                }
+                $product->tag()->sync($tagList);
             }
-            $product->tag()->attach($tagList);
             DB::commit();
             return redirect('/admin/product')->with('success', 'Bản ghi đã được thêm mới thành công.');
         } catch (\Throwable $th) {
@@ -119,11 +121,13 @@ class ProductController extends Controller
                     ]);
                 }
             }
-            foreach ($request->tags as $tagImage) {
-                $tagInstace = $this->tag::firstOrCreate(['name' => $tagImage]);
-                $tagList[] = $tagInstace->id;
+            if (!empty($request->tags)) {
+                foreach ($request->tags as $tagImage) {
+                    $tagInstace = $this->tag::firstOrCreate(['name' => $tagImage]);
+                    $tagList[] = $tagInstace->id;
+                }
+                $product->tag()->sync($tagList);
             }
-            $product->tag()->sync($tagList);
             DB::commit();
             return redirect('/admin/product')->with('success', 'Bản ghi đã được thêm mới thành công.');
         } catch (\Throwable $th) {
